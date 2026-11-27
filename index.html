@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>光影摄影社 · 用一帧光影，留住整个青春</title>
+  <meta name="description" content="校园摄影社团官网：作品展示、社团活动、招新加入。不限设备，零基础欢迎。" />
+  <style>
+    /* ========== 基础与变量 ========== */
+    :root {
+      --primary: #4A90D9;
+      --primary-dark: #3A78BC;
+      --primary-light: #EAF2FB;
+      --bg: #FFFFFF;
+      --bg-soft: #F6F8FB;
+      --text: #2B3138;
+      --muted: #66707A;
+      --line: #E6ECF2;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(74, 144, 217, 0.12);
+      --container: 1120px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+        "Noto Sans SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: var(--primary); text-decoration: none; }
+    ul { list-style: none; }
+
+    .container {
+      width: min(var(--container), 100% - 40px);
+      margin: 0 auto;
+    }
+
+    section { padding: 88px 0; }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 4vw, 34px);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* ========== 导航栏 ========== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text);
+    }
+
+    .brand svg { flex: none; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: 15px;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+    }
+
+    /* ========== 首屏横幅 ========== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #F7FAFE 0%, #FFFFFF 100%);
+      padding: 120px 0 100px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--primary-light);
+      filter: blur(40px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero::before { width: 320px; height: 320px; top: -100px; right: -80px; }
+    .hero::after { width: 260px; height: 260px; bottom: -120px; left: -60px; }
+
+    .hero-inner {
+      position: relative;
+      max-width: 720px;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5.2vw, 46px);
+      line-height: 1.3;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 20px;
+    }
+
+    .hero p.hero-intro {
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 17px);
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 1.5px solid var(--primary);
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-ghost {
+      background: #FFFFFF;
+      color: var(--primary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    /* 取景框角标装饰 */
+    .viewfinder {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--primary);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .vf-tl { top: 28px; left: 28px; border-right: 0; border-bottom: 0; }
+    .vf-tr { top: 28px; right: 28px; border-left: 0; border-bottom: 0; }
+    .vf-bl { bottom: 28px; left: 28px; border-right: 0; border-top: 0; }
+    .vf-br { bottom: 28px; right: 28px; border-left: 0; border-top: 0; }
+
+    /* ========== 社团介绍 ========== */
+    .about { background: var(--bg); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+
+    .about-points { margin: 24px 0 0; display: grid; gap: 14px; }
+
+    .about-points li {
+      display: flex;
+      gap: 12px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .about-points svg { flex: none; margin-top: 5px; color: var(--primary); }
+
+    .about-quote {
+      margin-top: 28px;
+      padding: 22px 24px;
+      background: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .stats-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: clamp(28px, 3.4vw, 36px);
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .stat-num small { font-size: 16px; font-weight: 600; margin-left: 2px; }
+
+    .stat-label { margin-top: 8px; color: var(--muted); font-size: 14px; }
+
+    /* ========== 作品集 ========== */
+    .gallery { background: var(--bg-soft); }
+
+    .gallery-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .gallery-card {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-card .thumb {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .gallery-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-card:hover .thumb img { transform: scale(1.05); }
+
+    .gallery-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+    }
+
+    .gallery-name { font-weight: 600; font-size: 15px; }
+    .gallery-date { color: var(--muted); font-size: 13px; white-space: nowrap; }
+
+    /* Lightbox 灯箱 */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20, 28, 38, 0.88);
+      padding: 24px;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox-figure {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+    }
+
+    .lightbox-figure img {
+      max-width: 100%;
+      max-height: 76vh;
+      margin: 0 auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox-caption .lb-name { font-size: 17px; font-weight: 600; }
+    .lightbox-caption .lb-date { font-size: 14px; color: rgba(255, 255, 255, 0.7); }
+
+    .lb-btn {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #FFFFFF;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lb-btn:hover { background: rgba(255, 255, 255, 0.24); }
+
+    .lb-close { top: -56px; right: 0; }
+    .lb-prev { left: -60px; top: 40%; transform: translateY(-50%); }
+    .lb-next { right: -60px; top: 40%; transform: translateY(-50%); }
+
+    /* ========== 社团活动 ========== */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .activity-card {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .activity-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .activity-card h3 { font-size: 18px; }
+
+    .activity-card p { color: var(--muted); font-size: 15px; flex: 1; }
+
+    .activity-meta {
+      display: grid;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .activity-meta li {
+      display: flex;
+      gap: 10px;
+      color: var(--text);
+    }
+
+    .activity-meta svg { flex: none; margin-top: 4px; color: var(--primary); }
+
+    .activity-tag {
+      align-self: flex-start;
+      font-size: 12px;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-weight: 600;
+    }
+
+    /* ========== 招新加入 ========== */
+    .join {
+      background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 100%);
+    }
+
+    .join-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .join-inner h2 {
+      font-size: clamp(28px, 4.4vw, 38px);
+      margin-bottom: 18px;
+    }
+
+    .join-inner p { color: var(--muted); font-size: 16px; margin-bottom: 30px; }
+
+    .join-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 34px;
+    }
+
+    .join-points span {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    /* ========== 页脚 ========== */
+    footer {
+      background: #1F2730;
+      color: #C8D0D8;
+      padding: 64px 0 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .footer-col h4 {
+      color: #FFFFFF;
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { display: grid; gap: 12px; }
+
+    .footer-col a { color: #C8D0D8; transition: color 0.2s ease; }
+    .footer-col a:hover { color: #FFFFFF; }
+
+    .footer-contact li {
+      display: flex;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .footer-contact svg { flex: none; margin-top: 5px; color: var(--primary); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #8B95A0;
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 900px) {
+      section { padding: 64px 0; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .activities-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: #FFFFFF;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 20px 16px;
+        display: none;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links a:last-child { border-bottom: 0; }
+
+      .hero { padding: 80px 0 64px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .stats-board { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .stat-card { padding: 22px 10px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+
+      .viewfinder { width: 28px; height: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 导航栏 ===== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="光影摄影社首页">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 8h3l2-3h6l2 3h3v11H4z"></path>
+          <circle cx="12" cy="13" r="3.5"></circle>
+        </svg>
+        光影摄影社
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="打开导航菜单" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </button>
+
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="#home">首页</a>
+        <a href="#about">关于我</a>
+        <a href="#contact">联系我</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== 1. 首页横幅（首屏） ===== -->
+  <section class="hero" id="home">
+    <span class="viewfinder vf-tl" aria-hidden="true"></span>
+    <span class="viewfinder vf-tr" aria-hidden="true"></span>
+    <span class="viewfinder vf-bl" aria-hidden="true"></span>
+    <span class="viewfinder vf-br" aria-hidden="true"></span>
+
+    <div class="container hero-inner">
+      <span class="hero-eyebrow">PHOTOGRAPHY CLUB · 校园摄影社团</span>
+      <h1>用一帧光影，留住整个青春</h1>
+      <p class="hero-intro">
+        我们是一个记录校园与日常的摄影社团：在这里观察光、捕捉故事，把平凡的日子拍成值得回看的瞬间。无论你用相机还是手机，都欢迎一起加入。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#gallery">浏览作品集</a>
+        <a class="btn btn-ghost" href="#join">加入社团</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. 社团介绍（关于我们） ===== -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-text">
+        <span class="section-eyebrow">关于我们</span>
+        <h2 class="section-title">用镜头记录校园里的真实瞬间</h2>
+        <p>
+          光影摄影社成立于 2019 年，是一个面向全校同学开放的兴趣社团。我们相信摄影是一种观察世界的方式：
+          社团鼓励每位成员用自己的视角记录生活，在拍摄中交流构图、光线与故事，而不是比拼器材。
+        </p>
+        <ul class="about-points">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            常规活动：周末主题外拍、作品分享会、胶片冲洗体验与年度摄影展。
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            社团理念：互相点评、共同进步，新手从跟拍开始，慢慢找到自己的风格。
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            开放对象：全体在校同学，不限专业、不限设备。
+          </li>
+        </ul>
+        <div class="about-quote">好照片不靠贵器材，靠观察世界的角度。</div>
+      </div>
+
+      <div class="stats-board" aria-label="社团数据看板">
+        <div class="stat-card">
+          <div class="stat-num">7<small>年</small></div>
+          <div class="stat-label">社团年限</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">120<small>+</small></div>
+          <div class="stat-label">在校成员数量</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">24<small>场</small></div>
+          <div class="stat-label">年度活动数量</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. 社员作品展示（作品集 Gallery） ===== -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="gallery-head">
+        <div>
+          <span class="section-eyebrow">GALLERY</span>
+          <h2 class="section-title">社员作品展示</h2>
+          <p class="section-lead">以下为社员实拍作品示例，点击图片可放大查看；替换下方卡片中的图片链接即可更新为自己的作品。</p>
+        </div>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <figure class="gallery-card" data-name="晨光走廊" data-date="2025-04-12">
+          <div class="thumb">
+            <img src="https://aka.doubaocdn.com/s/GNoI5uDcWU" alt="晨光走廊：阳光斜照的校园长廊" loading="lazy" />
+          </div>
+          <figcaption class="gallery-meta">
+            <span class="gallery-name">晨光走廊</span>
+            <span class="gallery-date">2025-04-12</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-name="湖畔黄昏" data-date="2025-05-03">
+          <div class="thumb">
+            <img src="https://aka.doubaocdn.com/s/AAWsdlWVFi" alt="湖畔黄昏：湖面倒映落日天光" loading="lazy" />
+          </div>
+          <figcaption class="gallery-meta">
+            <span class="gallery-name">湖畔黄昏</span>
+            <span class="gallery-date">2025-05-03</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-name="街角的猫" data-date="2025-03-21">
+          <div class="thumb">
+            <img src="https://aka.doubaocdn.com/s/eHNdHgpjJA" alt="街角的猫：趴在墙边晒太阳的橘猫" loading="lazy" />
+          </div>
+          <figcaption class="gallery-meta">
+            <span class="gallery-name">街角的猫</span>
+            <span class="gallery-date">2025-03-21</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-name="胶片里的你" data-date="2024-12-08">
+          <div class="thumb">
+            <img src="https://aka.doubaocdn.com/s/8KfJ20MM54" alt="胶片里的你：窗边望向远方的人像侧影" loading="lazy" />
+          </div>
+          <figcaption class="gallery-meta">
+            <span class="gallery-name">胶片里的你</span>
+            <span class="gallery-date">2024-12-08</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-name="天台落日" data-date="2025-06-15">
+          <div class="thumb">
+            <img src="https://aka.doubaocdn.com/s/RkDypJS0PK" alt="天台落日：栏杆边的人物剪影与晚霞" loading="lazy" />
+          </div>
+          <figcaption class="gallery-meta">
+            <span class="gallery-name">天台落日</span>
+            <span class="gallery-date">2025-06-15</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-name="静物与花" data-date="2025-02-19">
+          <div class="thumb">
+            <img src="https://aka.doubaocdn.com/s/2KLyn2kcfU" alt="静物与花：木桌上的野花、旧书与咖啡" loading="lazy" />
+          </div>
+          <figcaption class="gallery-meta">
+            <span class="gallery-name">静物与花</span>
+            <span class="gallery-date">2025-02-19</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. 社团活动 ===== -->
+  <section class="activities" id="activities">
+    <div class="container">
+      <span class="section-eyebrow">ACTIVITIES</span>
+      <h2 class="section-title">我们都在拍些什么</h2>
+      <p class="section-lead">三类固定活动面向新手友好，没有经验也可以直接参加，老成员会现场带拍、讲解基础技法。</p>
+
+      <div class="activities-grid">
+        <article class="activity-card">
+          <div class="activity-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 8h3l2-3h6l2 3h3v11H4z"></path>
+              <circle cx="12" cy="13" r="3.5"></circle>
+            </svg>
+          </div>
+          <span class="activity-tag">新手友好</span>
+          <h3>周末主题外拍</h3>
+          <p>围绕校园、街巷、季节等主题边走边拍，老成员现场讲解构图与光线，新手可以直接跟拍，结束后一起回看作品、互相点评。</p>
+          <ul class="activity-meta">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              时间：每周六 9:00–12:00
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s-7-6.1-7-11a7 7 0 1114 0c0 4.9-7 11-7 11z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+              地点：校内及周边（每期群内通知集合点）
+            </li>
+          </ul>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <path d="M7 9h10M7 13h6M7 17h8"></path>
+            </svg>
+          </div>
+          <span class="activity-tag">新手友好</span>
+          <h3>暗房胶片冲洗体验</h3>
+          <p>在暗房里学习胶片显影、冲洗与放大，亲眼感受一张照片从药液中慢慢浮现的过程；提供入门胶片与药液，初次参加由负责人带做。</p>
+          <ul class="activity-meta">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              时间：每月第二个周三 16:30–18:00
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s-7-6.1-7-11a7 7 0 1114 0c0 4.9-7 11-7 11z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+              地点：摄影楼 101 暗房
+            </li>
+          </ul>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 5h16v14H4z"></path>
+              <path d="M4 9h16M9 5v14"></path>
+            </svg>
+          </div>
+          <span class="activity-tag">全员参与</span>
+          <h3>期末全校摄影展</h3>
+          <p>征集全年级社员与同学的作品，共同参与选片、布展、布灯与撰写展签，面向全校开放观展与交流，是每学期最正式的一次作品展示。</p>
+          <ul class="activity-meta">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              时间：每年 6 月期末周
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s-7-6.1-7-11a7 7 0 1114 0c0 4.9-7 11-7 11z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+              地点：教学楼一层展厅
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. 招新 / 加入 ===== -->
+  <section class="join" id="join">
+    <div class="container join-inner">
+      <span class="section-eyebrow">JOIN US</span>
+      <h2>带上你的眼睛和手机，来加入我们</h2>
+      <p>
+        不限制设备，手机也可以；零基础欢迎，不会拍我们一起学。无论你想记录日常、学习构图，
+        还是认识一群同样喜欢拍照的同学，这里都有你的位置。
+      </p>
+      <div class="join-points">
+        <span>不限设备</span>
+        <span>零基础友好</span>
+        <span>定期外拍与体验活动</span>
+      </div>
+      <a class="btn btn-primary" href="mailto:photo-club@example.edu.cn?subject=招新报名 · 光影摄影社">报名加入社团</a>
+    </div>
+  </section>
+
+  <!-- ===== 6. 页脚导航 + 联系 ===== -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 8h3l2-3h6l2 3h3v11H4z"></path>
+              <circle cx="12" cy="13" r="3.5"></circle>
+            </svg>
+            光影摄影社
+          </div>
+          <p style="font-size:14px; color:#8B95A0; max-width:280px;">
+            用一帧光影，留住整个青春。记录校园日常，分享拍摄与观察的乐趣。
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#gallery">作品集</a></li>
+            <li><a href="#activities">社团活动</a></li>
+            <li><a href="#join">加入我们</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>联系信息</h4>
+          <ul class="footer-contact">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="M3 7l9 6 9-6"></path>
+              </svg>
+              <a href="mailto:photo-club@example.edu.cn">photo-club@example.edu.cn</a>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s-7-6.1-7-11a7 7 0 1114 0c0 4.9-7 11-7 11z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+              <span>活动室：摄影楼 101</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              <span>开放时间：每周三 17:00–18:30</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 光影摄影社 版权所有
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== 灯箱：点击放大查看作品 ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品大图预览">
+    <figure class="lightbox-figure">
+      <button class="lb-btn lb-close" id="lbClose" aria-label="关闭预览">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="上一张">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6"></path>
+        </svg>
+      </button>
+      <button class="lb-btn lb-next" id="lbNext" aria-label="下一张">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 6l6 6-6 6"></path>
+        </svg>
+      </button>
+      <img id="lbImage" src="" alt="" />
+      <figcaption class="lightbox-caption">
+        <span class="lb-name" id="lbName"></span>
+        <span class="lb-date" id="lbDate"></span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <script>
+    /* ========== 移动端导航菜单 ========== */
+    var navToggle = document.getElementById('navToggle');
+    var navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', function () {
+      var isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ========== 作品集灯箱（点击放大 + 前后切换） ========== */
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.gallery-card'));
+    var lightbox = document.getElementById('lightbox');
+    var lbImage = document.getElementById('lbImage');
+    var lbName = document.getElementById('lbName');
+    var lbDate = document.getElementById('lbDate');
+    var lbClose = document.getElementById('lbClose');
+    var lbPrev = document.getElementById('lbPrev');
+    var lbNext = document.getElementById('lbNext');
+    var currentIndex = 0;
+
+    function renderLightbox(index) {
+      currentIndex = (index + cards.length) % cards.length;
+      var card = cards[currentIndex];
+      var img = card.querySelector('img');
+      lbImage.src = img.src;
+      lbImage.alt = img.alt;
+      lbName.textContent = card.getAttribute('data-name');
+      lbDate.textContent = card.getAttribute('data-date');
+    }
+
+    function openLightbox(index) {
+      renderLightbox(index);
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    cards.forEach(function (card, index) {
+      card.addEventListener('click', function () {
+        openLightbox(index);
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', function () { renderLightbox(currentIndex - 1); });
+    lbNext.addEventListener('click', function () { renderLightbox(currentIndex + 1); });
+
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (!lightbox.classList.contains('open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') renderLightbox(currentIndex - 1);
+      if (event.key === 'ArrowRight') renderLightbox(currentIndex + 1);
+    });
+  </script>
+</body>
+</html>
